@@ -174,10 +174,11 @@
 
     if (state.running && !state.eStop) {
       state.runtimeSec += dt;
-      // produce capsules based on speed (per minute)
+      // produce capsules based on speed (per minute) — accumulate fractional progress
       const perSec = state.speed / 60;
-      const expected = perSec * dt + (Math.random() < (perSec * dt) % 1 ? 0 : 0);
-      const make = Math.floor(perSec * dt + Math.random() * 0.6);
+      state._accum = (state._accum || 0) + perSec * dt;
+      const make = Math.floor(state._accum);
+      state._accum -= make;
       for (let i = 0; i < make; i++) {
         const isDefect = Math.random() < state.targetDefectRate;
         state.produced += 1;

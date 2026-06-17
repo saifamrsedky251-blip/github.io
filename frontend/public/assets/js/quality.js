@@ -16,7 +16,7 @@
     $("donut-pass").setAttribute("stroke-dasharray", `${passPct.toFixed(2)} ${(100 - passPct).toFixed(2)}`);
     $("donut-rej").setAttribute("stroke-dasharray",  `${rejPct.toFixed(2)} ${(100 - rejPct).toFixed(2)}`);
     $("donut-rej").setAttribute("stroke-dashoffset", `${(-passPct).toFixed(2)}`);
-    $("donut-center").textContent = (total ? passPct.toFixed(0) : 0) + "%";
+    $("donut-center").innerHTML = `<span data-testid="qc-yield">${(total ? passPct.toFixed(0) : 0)}%</span>`;
 
     $("legend-pass").textContent = pass.toLocaleString();
     $("legend-rej").textContent  = rej.toLocaleString();
