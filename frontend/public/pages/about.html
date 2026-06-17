@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About · BrewLine</title>
+  <title>About · [ Your Name ]</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/animations.css" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,17 +11,13 @@
 <body data-page="about">
   <header class="nav">
     <a class="nav__brand" href="../index.html">
-      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="8" fill="#1a120b"/><path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/></svg></span>
-      <span><strong>BrewLine</strong><em>Capsule Factory OS</em></span>
+      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#c8763a"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="#0e0b08"/><path d="M8 22 L16 6 L24 22 Z" fill="url(#lg)"/></svg></span>
+      <span><strong>[ Your Name ]</strong><em>Portfolio · 2026</em></span>
     </a>
     <nav class="nav__links">
       <a href="../index.html">Home</a>
-      <a href="production.html">Production</a>
-      <a href="scada.html">SCADA</a>
-      <a href="quality.html">Quality</a>
-      <a href="cmms.html">CMMS</a>
-      <a href="analytics.html">Analytics</a>
-      <a href="docs.html">Docs</a>
+      <a href="brewline.html">BrewLine</a>
+      <a href="magic-survival.html">Magic Survival</a>
       <a href="about.html" class="active">About</a>
     </nav>
     <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
@@ -31,57 +27,70 @@
     <header class="page__head">
       <div>
         <p class="kicker"><span class="dot pulse"></span> About</p>
-        <h1 class="page__title">Project &amp; author.</h1>
-        <p class="page__sub">Replace the placeholders below with your student information before submission.</p>
+        <h1 class="page__title">Hi — I'm <span class="ink-copper" contenteditable="true" data-testid="about-name">[ Your Name ]</span>.</h1>
+        <p class="page__sub">All fields below are <code>contenteditable</code> — click any one and start typing to personalise. When you're happy, paste the resulting HTML back into source (or just leave it as placeholder for now).</p>
       </div>
     </header>
 
     <div class="grid-2">
       <section class="card">
-        <h4><span class="dot"></span> Author</h4>
+        <h4><span class="dot"></span> Profile</h4>
         <table class="table">
           <tbody>
-            <tr><th style="width: 160px;">Name</th>          <td contenteditable="true" data-testid="about-name"     style="color:var(--ink-cream)">[ Your full name ]</td></tr>
-            <tr><th>Student ID</th>                          <td contenteditable="true" data-testid="about-id"       style="color:var(--ink-cream)">[ Your student ID ]</td></tr>
-            <tr><th>University</th>                          <td contenteditable="true" data-testid="about-uni"      style="color:var(--ink-cream)">[ Your university ]</td></tr>
-            <tr><th>Course</th>                              <td contenteditable="true" data-testid="about-course"   style="color:var(--ink-cream)">[ Course / module title ]</td></tr>
-            <tr><th>Supervisor</th>                          <td contenteditable="true" data-testid="about-sup"      style="color:var(--ink-cream)">[ Supervisor name ]</td></tr>
-            <tr><th>Academic year</th>                       <td contenteditable="true" data-testid="about-year"     style="color:var(--ink-cream)">2025 / 2026</td></tr>
+            <tr><th style="width:160px">Student ID</th><td contenteditable="true" data-testid="about-id" style="color:var(--ink-cream)">[ Your student ID ]</td></tr>
+            <tr><th>University</th>                    <td contenteditable="true" data-testid="about-uni" style="color:var(--ink-cream)">[ Your university ]</td></tr>
+            <tr><th>Course</th>                        <td contenteditable="true" data-testid="about-course" style="color:var(--ink-cream)">[ Course / programme ]</td></tr>
+            <tr><th>Supervisor</th>                    <td contenteditable="true" data-testid="about-sup" style="color:var(--ink-cream)">[ Supervisor name ]</td></tr>
+            <tr><th>Academic year</th>                 <td contenteditable="true" data-testid="about-year" style="color:var(--ink-cream)">2025 / 2026</td></tr>
+            <tr><th>Location</th>                      <td contenteditable="true" data-testid="about-location" style="color:var(--ink-cream)">[ City, Country ]</td></tr>
           </tbody>
         </table>
-        <p class="mono" style="font-size:11px; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.2em; margin-top:12px">Tip: cells above are <code>contenteditable</code>. Edit inline, then copy the HTML into source.</p>
+
+        <h4 style="margin-top:24px;"><span class="dot"></span> Reach me</h4>
+        <table class="table">
+          <tbody>
+            <tr><th style="width:160px">Email</th>    <td contenteditable="true" data-testid="about-email" class="mono" style="color:var(--ink-copper-2)">[ you@example.com ]</td></tr>
+            <tr><th>GitHub</th>                       <td contenteditable="true" data-testid="about-github" class="mono" style="color:var(--ink-copper-2)">github.com/[ your-handle ]</td></tr>
+            <tr><th>LinkedIn</th>                     <td contenteditable="true" data-testid="about-linkedin" class="mono" style="color:var(--ink-copper-2)">linkedin.com/in/[ your-handle ]</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="card">
-        <h4><span class="dot"></span> Project description</h4>
+        <h4><span class="dot"></span> About this portfolio</h4>
         <p style="color:var(--ink-cream-2);">
-          BrewLine is a full <strong>Smart Coffee Capsule Manufacturing &amp; Monitoring System</strong> built for a university Industrial Informatics module.
-          It simulates a five‑stage production line for single‑serve coffee capsules and demonstrates modern industrial software practices: animated process visualisation,
-          a SCADA‑style HMI, an inspection / defect classifier, a CMMS for machine health, and an analytics layer
-          that ships metrics to InfluxDB and renders them in Grafana.
+          This site is my <strong>personal portfolio</strong>. It currently hosts two featured projects:
         </p>
-        <p style="color:var(--ink-cream-2);">
-          The entire site is deployed as a static bundle on <strong>GitHub Pages</strong>. The Python simulator is included in <code>/simulation/</code>
-          so the same data flow can be reproduced locally against a real InfluxDB / Grafana stack.
-        </p>
-
-        <h4 style="margin-top: 20px;"><span class="dot"></span> Modules delivered</h4>
-        <ul style="color:var(--ink-cream-2); padding-left:18px;">
-          <li>Landing page with live SCADA snapshot</li>
-          <li>Animated five‑stage production simulation</li>
-          <li>SCADA HMI with PVs, gauges, alarm bus</li>
-          <li>Quality control + defect classifier (5 classes)</li>
-          <li>CMMS — health cards, schedule, repair log</li>
-          <li>Analytics — InfluxDB / Grafana integration</li>
-          <li>Documentation &amp; architecture overview</li>
+        <ul style="color:var(--ink-cream-2); padding-left: 18px;">
+          <li><strong style="color:var(--ink-cream)"><a href="brewline.html" style="border-bottom:1px dashed rgba(200,118,58,.4); color:var(--ink-copper-2)">BrewLine</a></strong> — a simulated smart coffee‑capsule manufacturing line built for an Industrial Informatics module. Five animated stages, SCADA HMI, defect classifier, CMMS and an InfluxDB / Grafana analytics path.</li>
+          <li><strong style="color:var(--ink-cream)"><a href="magic-survival.html" style="border-bottom:1px dashed rgba(124,58,237,.4); color:#c4b5fd">Magic Survival</a></strong> — a solo Pygame bullet‑heaven roguelite I designed and coded from scratch. Three classes, two scaling abilities, and a 15‑minute final boss.</li>
         </ul>
+
+        <h4 style="margin-top: 22px;"><span class="dot"></span> Things I'm comfortable with</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+          <span class="tag tag--info">Python</span>
+          <span class="tag tag--info">JavaScript</span>
+          <span class="tag tag--info">HTML / CSS</span>
+          <span class="tag tag--good">Pygame</span>
+          <span class="tag tag--warn">SCADA / HMI</span>
+          <span class="tag tag--warn">InfluxDB</span>
+          <span class="tag tag--warn">Grafana</span>
+          <span class="tag tag--good">Git &amp; GitHub Pages</span>
+          <span class="tag tag--info">Linux</span>
+          <span class="tag tag--info">VS Code</span>
+        </div>
+
+        <h4 style="margin-top: 22px;"><span class="dot"></span> Currently exploring</h4>
+        <p style="color:var(--ink-cream-2);" contenteditable="true" data-testid="about-currently">
+          Real‑time data systems for manufacturing, machine‑vision quality control with TensorFlow.js, and procedural generation in indie games. Always happy to chat about clever HMIs and over‑engineered side projects.
+        </p>
       </section>
     </div>
   </main>
 
   <footer class="footer">
-    <div><strong>BrewLine</strong> · About</div>
-    <div class="footer__links"><a href="../index.html">Home</a><a href="docs.html">Docs</a></div>
+    <div><strong>[ Your Name ]</strong> · About</div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="brewline.html">BrewLine</a><a href="magic-survival.html">Magic Survival</a></div>
   </footer>
 
   <script src="../assets/js/main.js"></script>

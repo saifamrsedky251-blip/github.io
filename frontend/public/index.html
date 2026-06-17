@@ -3,14 +3,201 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BrewLine • Smart Coffee Capsule Manufacturing</title>
-  <meta name="description" content="Industrial control, SCADA, CMMS and analytics for a simulated coffee capsule production line." />
+  <title>Portfolio · [ Your Name ]</title>
+  <meta name="description" content="Portfolio — Industrial Informatics &amp; game development projects." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a120b'/%3E%3Cpath d='M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z' fill='%23b87333'/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
+  <style>
+    /* portfolio-only flourishes */
+    .pf-hero {
+      padding: 80px 28px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .pf-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); text-transform: uppercase;
+      font-size: 11px; letter-spacing: .3em; color: var(--ink-mute);
+      margin-bottom: 18px;
+    }
+    .pf-hero__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: 1; letter-spacing: -0.03em;
+      margin: 0 0 24px;
+    }
+    .pf-hero__title em {
+      font-style: italic; color: var(--ink-copper-2); font-weight: 800;
+    }
+    .pf-hero__lead {
+      color: var(--ink-cream-2); font-size: 1.15rem;
+      max-width: 620px; margin: 0 0 30px;
+    }
+    .pf-hero__meta {
+      display: flex; flex-wrap: wrap; gap: 28px; font-family: var(--font-mono); font-size: 12px;
+      color: var(--ink-mute); text-transform: uppercase; letter-spacing: .15em;
+    }
+    .pf-hero__meta strong { color: var(--ink-cream); }
+    .pf-hero__meta .dot { width:6px; height:6px; background: var(--ink-copper); }
+
+    /* PROJECTS */
+    .pf-projects {
+      max-width: 1280px; margin: 60px auto; padding: 0 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+    }
+    .pf-project {
+      position: relative; overflow: hidden; border-radius: var(--radius-lg);
+      border: 1px solid rgba(243,231,211,.08);
+      padding: 30px; min-height: 420px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform .5s cubic-bezier(.2,.7,.2,1), border-color .35s ease;
+    }
+    .pf-project:hover { transform: translateY(-4px); border-color: rgba(243,231,211,.2); }
+    .pf-project__tag {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .25em; text-transform: uppercase;
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      background: rgba(243,231,211,.08); color: var(--ink-cream-2); width: fit-content;
+    }
+    .pf-project__title {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 18px 0 12px; line-height: 1.05;
+    }
+    .pf-project__lead { color: var(--ink-cream-2); font-size: .98rem; max-width: 440px; }
+    .pf-project__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 28px; font-family: var(--font-body); font-weight: 600;
+      font-size: 14px; padding: 12px 22px; border-radius: 999px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: var(--ink-cream);
+      width: fit-content; transition: all .3s ease;
+    }
+    .pf-project:hover .pf-project__cta { background: rgba(255,255,255,.18); padding-right: 28px; }
+    .pf-project__stack {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+    }
+    .pf-project__stack span {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.06); color: var(--ink-cream-2);
+    }
+
+    /* BREWLINE card — coffee */
+    .pf-project--brew {
+      background:
+        radial-gradient(800px 400px at 100% 0%, rgba(200,118,58,.22), transparent 60%),
+        radial-gradient(600px 300px at 0% 100%, rgba(200,118,58,.10), transparent 60%),
+        linear-gradient(180deg, rgba(43,29,20,.85), rgba(22,17,13,.95));
+    }
+    .pf-project--brew::before {
+      content: ""; position: absolute; inset: 0;
+      background: repeating-linear-gradient(135deg, rgba(243,231,211,.02) 0 10px, transparent 10px 20px);
+      pointer-events: none;
+    }
+    .pf-project--brew .pf-project__title,
+    .pf-project--brew .pf-project__lead { max-width: 56%; }
+    .pf-project--brew .pf-project__live {
+      position: absolute; right: 28px; top: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      background: rgba(14,11,8,.6); border: 1px solid rgba(200,118,58,.3); border-radius: 12px;
+      padding: 14px; backdrop-filter: blur(8px);
+    }
+    .pf-project--brew .pf-project__live .stat-mini {
+      min-width: 90px;
+    }
+    .pf-project--brew .pf-project__live label {
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-mute);
+    }
+    .pf-project--brew .pf-project__live strong {
+      display: block; font-family: var(--font-display); font-size: 1.4rem; color: var(--ink-cream); margin-top: 4px;
+    }
+
+    /* MAGIC SURVIVAL card — purple / cyan */
+    .pf-project--magic {
+      background:
+        radial-gradient(700px 400px at 100% 100%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(500px 300px at 0% 0%, rgba(34,211,238,.18), transparent 60%),
+        linear-gradient(180deg, rgba(20,12,40,.95), rgba(8,5,20,.98));
+      border-color: rgba(124,58,237,.25);
+    }
+    .pf-project--magic::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(2px 2px at 20% 30%, #fff7, transparent 50%),
+                  radial-gradient(2px 2px at 80% 60%, #22d3ee99, transparent 50%),
+                  radial-gradient(1px 1px at 40% 70%, #fff5, transparent 50%),
+                  radial-gradient(1px 1px at 70% 20%, #fbbf2455, transparent 50%),
+                  radial-gradient(2px 2px at 90% 80%, #c4b5fd55, transparent 50%),
+                  radial-gradient(1px 1px at 10% 90%, #fff6, transparent 50%);
+      pointer-events: none;
+      animation: twinkle 4s ease-in-out infinite;
+    }
+    @keyframes twinkle { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+    .pf-project--magic .pf-project__title { color: #fff; }
+    .pf-project--magic .pf-project__title em { color: #c4b5fd; font-style: italic; }
+    .pf-project--magic .pf-project__tag { background: rgba(124,58,237,.25); color: #ddd6fe; }
+    .pf-project--magic .orb {
+      position: absolute; width: 110px; height: 110px; border-radius: 50%;
+      background: radial-gradient(circle, #c4b5fd, #7c3aed 60%, transparent 70%);
+      filter: blur(2px); opacity: .8;
+      top: 50px; right: 60px;
+      animation: orb-float 6s ease-in-out infinite;
+    }
+    @keyframes orb-float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.06); }
+    }
+    .pf-project--magic .lightning {
+      position: absolute; right: 32px; bottom: 32px; width: 80px; height: 80px;
+      opacity: .8;
+    }
+
+    /* SECTION shared */
+    .pf-section {
+      max-width: 1280px; margin: 80px auto; padding: 0 28px;
+    }
+    .pf-section h2 {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800;
+      letter-spacing: -.02em; margin-bottom: 14px;
+    }
+    .pf-section p.lead { color: var(--ink-cream-2); max-width: 620px; margin-bottom: 30px; }
+
+    /* SKILLS strip */
+    .pf-skills {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    .pf-skill {
+      padding: 22px; border-radius: var(--radius);
+      background: rgba(22,17,13,.65); border: 1px solid rgba(243,231,211,.07);
+      transition: border-color .3s ease, transform .3s ease;
+    }
+    .pf-skill:hover { border-color: rgba(200,118,58,.4); transform: translateY(-2px); }
+    .pf-skill__ico {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center; margin-bottom: 14px;
+      background: rgba(200,118,58,.12); color: var(--ink-copper-2);
+      font-family: var(--font-display); font-weight: 800; font-size: 18px;
+    }
+    .pf-skill h4 { font-family: var(--font-display); font-size: 1.1rem; margin: 0 0 6px; }
+    .pf-skill p { color: var(--ink-cream-2); font-size: .92rem; margin: 0; }
+
+    /* CONTACT */
+    .pf-contact {
+      max-width: 1280px; margin: 80px auto; padding: 60px 28px;
+      border-top: 1px solid rgba(243,231,211,.07);
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: end;
+    }
+    .pf-contact h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .pf-contact a { color: var(--ink-copper-2); border-bottom: 1px dashed rgba(200,118,58,.4); }
+    .pf-contact a:hover { color: var(--ink-cream); }
+
+    @media (max-width: 900px) {
+      .pf-projects { grid-template-columns: 1fr; }
+      .pf-skills { grid-template-columns: repeat(2, 1fr); }
+      .pf-contact { grid-template-columns: 1fr; }
+      .pf-project--brew .pf-project__live { position: static; margin-top: 18px; }
+      .pf-project--brew .pf-project__title,
+      .pf-project--brew .pf-project__lead { max-width: 100%; }
+      .pf-project--magic .orb { right: 20px; top: 30px; width: 80px; height: 80px; }
+    }
+  </style>
 </head>
 <body data-page="home">
   <div id="root" style="display:none"></div>
@@ -20,184 +207,155 @@
     <a class="nav__brand" href="index.html" data-testid="nav-brand">
       <span class="nav__logo">
         <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-          <rect width="32" height="32" rx="8" fill="#1a120b"/>
-          <path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/>
+          <defs>
+            <linearGradient id="lg" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#c8763a"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="#0e0b08"/>
+          <path d="M8 22 L16 6 L24 22 Z" fill="url(#lg)"/>
         </svg>
       </span>
       <span>
-        <strong>BrewLine</strong>
-        <em>Capsule Factory OS</em>
+        <strong data-testid="brand-name">[ Your Name ]</strong>
+        <em>Portfolio · 2026</em>
       </span>
     </a>
     <nav class="nav__links">
       <a href="index.html" class="active" data-testid="nav-home">Home</a>
-      <a href="pages/production.html" data-testid="nav-production">Production</a>
-      <a href="pages/scada.html" data-testid="nav-scada">SCADA</a>
-      <a href="pages/quality.html" data-testid="nav-quality">Quality</a>
-      <a href="pages/cmms.html" data-testid="nav-cmms">CMMS</a>
-      <a href="pages/analytics.html" data-testid="nav-analytics">Analytics</a>
-      <a href="pages/docs.html" data-testid="nav-docs">Docs</a>
+      <a href="pages/brewline.html" data-testid="nav-brewline">BrewLine</a>
+      <a href="pages/magic-survival.html" data-testid="nav-magic">Magic Survival</a>
       <a href="pages/about.html" data-testid="nav-about">About</a>
+      <a href="#contact" data-testid="nav-contact">Contact</a>
     </nav>
     <button class="nav__burger" id="nav-burger" data-testid="nav-burger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- HERO -->
   <main>
-    <section class="hero">
-      <div class="hero__grid">
-        <div class="hero__copy">
-          <div class="kicker" data-testid="hero-kicker">
-            <span class="dot pulse"></span>
-            Production line: <strong>ONLINE</strong>
-          </div>
-          <h1 class="hero__title">
-            Where ground coffee<br/>becomes <span class="ink-copper">measurable data.</span>
-          </h1>
-          <p class="hero__lead">
-            BrewLine is a simulated, end‑to‑end smart factory for coffee capsules.
-            Watch capsules travel the conveyor, monitor SCADA in real time,
-            inspect quality defects, schedule maintenance and stream metrics to InfluxDB &amp; Grafana.
-          </p>
-          <div class="hero__cta">
-            <a href="pages/production.html" class="btn btn--primary" data-testid="cta-start-line">
-              Enter the line →
-            </a>
-            <a href="pages/docs.html" class="btn btn--ghost" data-testid="cta-docs">
-              Read documentation
-            </a>
-          </div>
+    <!-- HERO -->
+    <section class="pf-hero">
+      <div class="pf-hero__eyebrow" data-testid="hero-eyebrow">
+        <span class="dot pulse"></span> Portfolio · 2026
+      </div>
+      <h1 class="pf-hero__title" data-testid="hero-title">
+        Hi, I'm <em data-testid="hero-name">[ Your Name ]</em>.<br/>
+        I build <em>systems</em> and <em>games</em>.
+      </h1>
+      <p class="pf-hero__lead" data-testid="hero-lead">
+        A short collection of projects I've shipped — from a simulated coffee-capsule factory
+        with full SCADA, CMMS and analytics, to a magic‑survival roguelite written from scratch in Python.
+        Each one is an excuse to learn something new and ship something that actually works.
+      </p>
+      <div class="pf-hero__meta">
+        <span><span class="dot"></span> <strong>2</strong>&nbsp;featured projects</span>
+        <span><span class="dot"></span> stack <strong>Python · JS · Pygame · InfluxDB</strong></span>
+        <span><span class="dot"></span> open to <strong>collaboration</strong></span>
+      </div>
+    </section>
 
-          <ul class="hero__chips">
-            <li><span>01</span> Load capsule</li>
-            <li><span>02</span> Fill coffee</li>
-            <li><span>03</span> Compress &amp; seal</li>
-            <li><span>04</span> Packaging</li>
-            <li><span>05</span> Inspect</li>
-          </ul>
+    <!-- PROJECTS -->
+    <section class="pf-projects" id="projects">
+      <a class="pf-project pf-project--brew" href="pages/brewline.html" data-testid="project-brewline">
+        <div>
+          <span class="pf-project__tag">M·01 · Industrial Informatics</span>
+          <h2 class="pf-project__title">BrewLine — Smart Coffee Capsule Factory</h2>
+          <p class="pf-project__lead">An end‑to‑end manufacturing simulation: 5‑stage animated production, SCADA HMI, quality control, CMMS health management, and a time‑series analytics layer streaming to InfluxDB / Grafana.</p>
+          <div class="pf-project__stack">
+            <span>HTML / CSS / JS</span><span>Python</span><span>InfluxDB v2</span><span>Grafana 10</span>
+          </div>
         </div>
 
-        <aside class="hero__panel" data-testid="hero-live-panel">
-          <header>
-            <span class="dot pulse"></span>
-            Live SCADA snapshot
-            <em id="hero-clock">--:--:--</em>
-          </header>
-          <div class="hero__panel-grid">
-            <div class="stat">
-              <label>Produced</label>
-              <strong data-counter="produced" data-testid="hero-produced">0</strong>
-              <small>capsules / shift</small>
-            </div>
-            <div class="stat">
-              <label>OEE</label>
-              <strong data-counter="oee" data-testid="hero-oee">0</strong>
-              <small>% efficiency</small>
-            </div>
-            <div class="stat">
-              <label>Temperature</label>
-              <strong data-counter="temp" data-testid="hero-temp">0</strong>
-              <small>°C sealer</small>
-            </div>
-            <div class="stat">
-              <label>Pressure</label>
-              <strong data-counter="press" data-testid="hero-press">0</strong>
-              <small>bar piston</small>
-            </div>
+        <div class="pf-project__live">
+          <div class="stat-mini"><label>Produced</label><strong data-testid="pf-brew-produced">0</strong></div>
+          <div class="stat-mini"><label>OEE</label><strong data-testid="pf-brew-oee">0%</strong></div>
+          <div class="stat-mini"><label>Sealer</label><strong data-testid="pf-brew-temp">--°C</strong></div>
+          <div class="stat-mini"><label>State</label><strong data-testid="pf-brew-state" style="font-size:.95rem">IDLE</strong></div>
+        </div>
+
+        <span class="pf-project__cta">Enter project →</span>
+      </a>
+
+      <a class="pf-project pf-project--magic" href="pages/magic-survival.html" data-testid="project-magic">
+        <div class="orb"></div>
+        <svg class="lightning" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M36 4 L18 32 L30 32 L24 60 L46 28 L34 28 Z" fill="#fbbf24" stroke="#fef3c7" stroke-width="1.5"/>
+        </svg>
+        <div>
+          <span class="pf-project__tag">P·02 · Game Development</span>
+          <h2 class="pf-project__title">Magic Survival — <em>bullet heaven roguelite</em></h2>
+          <p class="pf-project__lead">A Pygame survival game I designed and coded from scratch. Three character classes, escalating waves, level‑up upgrade trees, chain‑lightning &amp; firebreath abilities, and a 15‑minute final boss with 8 glowing eyes.</p>
+          <div class="pf-project__stack">
+            <span style="background:rgba(124,58,237,.2); color:#ddd6fe;">Python 3</span>
+            <span style="background:rgba(34,211,238,.18); color:#a5f3fc;">Pygame</span>
+            <span style="background:rgba(251,191,36,.18); color:#fde68a;">Procedural</span>
           </div>
-          <div class="hero__panel-chart">
-            <canvas id="hero-spark" width="600" height="120"></canvas>
-          </div>
-          <footer>
-            Streaming → <code>influxdb://brewline/metrics</code>
-          </footer>
-        </aside>
+        </div>
+        <span class="pf-project__cta" style="background:rgba(124,58,237,.25); border-color:rgba(196,181,253,.3); color:#ddd6fe;">Play the demo →</span>
+      </a>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section class="pf-section">
+      <h2>What I work on.</h2>
+      <p class="lead">A short signal of the things I'm comfortable shipping today.</p>
+      <div class="pf-skills">
+        <div class="pf-skill"><div class="pf-skill__ico">01</div><h4>Industrial software</h4><p>SCADA dashboards, CMMS, time‑series telemetry &amp; defect classifiers for manufacturing.</p></div>
+        <div class="pf-skill"><div class="pf-skill__ico">02</div><h4>Game development</h4><p>Pygame &amp; arcade‑style mechanics — physics, AI, particle effects, level systems.</p></div>
+        <div class="pf-skill"><div class="pf-skill__ico">03</div><h4>Frontend craft</h4><p>Hand‑written HTML / CSS / JS with motion, accessibility &amp; responsive design.</p></div>
+        <div class="pf-skill"><div class="pf-skill__ico">04</div><h4>Data &amp; integrations</h4><p>InfluxDB, Grafana, REST APIs, automation scripts &amp; tooling around Python.</p></div>
       </div>
     </section>
 
-    <!-- MODULE GRID -->
-    <section class="modules" id="modules">
-      <header class="section-head">
-        <p class="kicker"><span class="dot"></span> System modules</p>
-        <h2>Eight modules. One factory.</h2>
-      </header>
-      <div class="modules__grid">
-        <a class="module" href="pages/production.html" data-testid="module-production">
-          <span class="module__id">M·01</span>
-          <h3>Production Line</h3>
-          <p>Animated conveyor, five stages, start / stop / e‑stop, live counters.</p>
-        </a>
-        <a class="module" href="pages/scada.html" data-testid="module-scada">
-          <span class="module__id">M·02</span>
-          <h3>SCADA</h3>
-          <p>Industrial HMI with temperature, pressure, runtime &amp; alarm bus.</p>
-        </a>
-        <a class="module" href="pages/quality.html" data-testid="module-quality">
-          <span class="module__id">M·03</span>
-          <h3>Quality Control</h3>
-          <p>Defect classifier — underfill, overfill, seal failure, shell, pack.</p>
-        </a>
-        <a class="module" href="pages/cmms.html" data-testid="module-cmms">
-          <span class="module__id">M·04</span>
-          <h3>CMMS</h3>
-          <p>Health cards, scheduled maintenance, downtime &amp; repair log.</p>
-        </a>
-        <a class="module" href="pages/analytics.html" data-testid="module-analytics">
-          <span class="module__id">M·05</span>
-          <h3>Analytics</h3>
-          <p>InfluxDB &amp; Grafana integration plan with provisioning JSON.</p>
-        </a>
-        <a class="module" href="pages/docs.html" data-testid="module-docs">
-          <span class="module__id">M·06</span>
-          <h3>Documentation</h3>
-          <p>Architecture, tech stack, testing strategy &amp; future work.</p>
-        </a>
-        <a class="module" href="pages/about.html" data-testid="module-about">
-          <span class="module__id">M·07</span>
-          <h3>About</h3>
-          <p>Student &amp; course information for project grading.</p>
-        </a>
-        <a class="module module--accent" href="pages/production.html" data-testid="module-cta">
-          <span class="module__id">M·08</span>
-          <h3>Run a shift →</h3>
-          <p>Spin the conveyor, trigger defects, watch metrics flow.</p>
-        </a>
+    <!-- CONTACT -->
+    <section class="pf-contact" id="contact" data-testid="contact-section">
+      <div>
+        <h2>Let's make something.</h2>
+        <p style="color:var(--ink-cream-2); margin-top:14px; max-width: 540px;">
+          Looking for a collaborator, hiring an intern, or just curious about a project?
+          Drop me a line — I read every email.
+        </p>
       </div>
-    </section>
-
-    <!-- ARCHITECTURE STRIP -->
-    <section class="arch">
-      <header class="section-head">
-        <p class="kicker"><span class="dot"></span> Architecture</p>
-        <h2>From shop floor → time series → dashboard.</h2>
-      </header>
-      <div class="arch__pipe">
-        <div class="arch__node"><span>01</span><strong>Simulator</strong><em>Python · JS</em></div>
-        <div class="arch__arrow">→</div>
-        <div class="arch__node"><span>02</span><strong>SCADA UI</strong><em>HMI · Alarms</em></div>
-        <div class="arch__arrow">→</div>
-        <div class="arch__node"><span>03</span><strong>InfluxDB</strong><em>time‑series</em></div>
-        <div class="arch__arrow">→</div>
-        <div class="arch__node"><span>04</span><strong>Grafana</strong><em>dashboards</em></div>
+      <div style="font-family: var(--font-mono); font-size: 14px; display:grid; gap:10px;">
+        <div><span style="color:var(--ink-mute)">email — </span><a href="mailto:[ you@example.com ]" data-testid="contact-email">[ you@example.com ]</a></div>
+        <div><span style="color:var(--ink-mute)">github — </span><a href="https://github.com/" target="_blank" rel="noreferrer" data-testid="contact-github">github.com/[ your-handle ]</a></div>
+        <div><span style="color:var(--ink-mute)">linkedin — </span><a href="#" data-testid="contact-linkedin">linkedin.com/in/[ your-handle ]</a></div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div>
-      <strong>BrewLine</strong> · Smart Coffee Capsule Manufacturing &amp; Monitoring System
-      <em>University project · graded build</em>
-    </div>
+    <div><strong>[ Your Name ]</strong> · Portfolio · <em>2026</em></div>
     <div class="footer__links">
-      <a href="pages/docs.html">Docs</a>
+      <a href="pages/brewline.html">BrewLine</a>
+      <a href="pages/magic-survival.html">Magic Survival</a>
       <a href="pages/about.html">About</a>
-      <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
     </div>
   </footer>
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/home.js"></script>
+  <script>
+    // mini live snapshot for BrewLine card
+    (function () {
+      const map = {
+        "pf-brew-produced": () => Brew.state.produced.toLocaleString(),
+        "pf-brew-oee":      () => Brew.efficiency() + "%",
+        "pf-brew-temp":     () => Brew.state.temperature.toFixed(0) + "°C",
+        "pf-brew-state":    () => Brew.state.eStop ? "E-STOP" : (Brew.state.running ? "RUNNING" : "IDLE")
+      };
+      Brew.subscribe(() => {
+        Object.entries(map).forEach(([id, fn]) => {
+          const el = document.querySelector(`[data-testid="${id}"]`);
+          if (el) el.textContent = fn();
+        });
+      });
+      // gentle auto-start so the snapshot feels alive
+      if (!Brew.state.running && !Brew.state.eStop) {
+        setTimeout(() => Brew.start(), 600);
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -1,35 +1,35 @@
-# BrewLine — Smart Coffee Capsule Manufacturing &amp; Monitoring System
+# [ Your Name ] — Portfolio
 
-A modern, dark‑themed, fully responsive web simulation of a 5‑stage coffee‑capsule production line, with a SCADA HMI, quality control, CMMS, and an InfluxDB / Grafana analytics integration. Built for a university Industrial Informatics module — deployable as a 100% static site on **GitHub Pages**.
+A personal portfolio site hosting two featured projects, built as a 100% static bundle deployable to **GitHub Pages**.
 
-> Stack: **HTML · CSS · JavaScript** (browser) + **Python** (simulator) + **InfluxDB v2** + **Grafana**.
-
----
-
-## Live preview
-
-| Page          | Path                              |
-| ------------- | --------------------------------- |
-| Landing       | `/index.html`                     |
-| Production    | `/pages/production.html`          |
-| SCADA         | `/pages/scada.html`               |
-| Quality       | `/pages/quality.html`             |
-| CMMS          | `/pages/cmms.html`                |
-| Analytics     | `/pages/analytics.html`           |
-| Documentation | `/pages/docs.html`                |
-| About         | `/pages/about.html`               |
+> Stack: **HTML · CSS · JavaScript** (browser) + **Python** (Magic Survival game + BrewLine simulator) + **InfluxDB v2** + **Grafana** (for BrewLine's analytics path).
 
 ---
 
-## Features
+## Featured projects
 
-- Animated **5‑stage conveyor** with capsules visibly moving through Load → Fill → Seal → Pack → Inspect.
-- Industrial **SCADA HMI**: process variables, gauges, alarm log, Start / Stop / Reset / Emergency Stop.
-- **Quality control** classifier: underfill, overfill, seal failure, shell damage, packaging failure — with pass / reject %, donut chart, and full defect history.
-- **CMMS**: health cards per machine, maintenance schedule, repair log, MTBF / MTTR.
-- **Analytics**: live mini‑dashboard + InfluxDB line‑protocol examples + a Grafana provisioning JSON.
-- **Dark, industrial** theme with custom palette (charcoal, espresso, cream, copper) and grain overlay.
-- Fully **responsive** (desktop / tablet / mobile) and accessible.
+### 1. BrewLine — Smart Coffee Capsule Factory  
+A simulated end-to-end manufacturing line for single-serve coffee capsules.
+
+- 5-stage animated production line (load → fill → seal → pack → inspect)
+- Industrial **SCADA HMI** with gauges, alarms, PV table
+- **Quality Control** module: 5-class defect classifier with pass/reject reporting
+- **CMMS** (Computerised Maintenance Management) with health cards, scheduled tasks, repair log, MTBF/MTTR
+- **Analytics**: InfluxDB line-protocol example + Grafana dashboard JSON (provisioning included)
+- Live simulator runs in-browser at 1 Hz and persists to `localStorage`
+
+→ Project hub: [`pages/brewline.html`](pages/brewline.html)
+
+### 2. Magic Survival — Pygame bullet-heaven roguelite  
+A solo Python game I designed and coded from scratch.
+
+- 3 character classes (Wizard / Knight / Archer) with distinct stat profiles
+- 2 scaling abilities (Firebreath, Lightning chain) with 7 upgrade levels each
+- 15-minute survival timer ending in an 8-eyed final boss
+- Includes 5 real sound effects (playable directly from the showcase page)
+- Downloadable clean bundle: [`downloads/magic-survival.zip`](downloads/magic-survival.zip)
+
+→ Project page: [`pages/magic-survival.html`](pages/magic-survival.html)
 
 ---
 
@@ -37,35 +37,32 @@ A modern, dark‑themed, fully responsive web simulation of a 5‑stage coffee�
 
 ```
 /
-├── index.html
+├── index.html                                ← Portfolio landing
 ├── assets/
 │   ├── css/
-│   │   ├── style.css
-│   │   └── animations.css
-│   └── js/
-│       ├── main.js            ← shared simulator (1 Hz tick, localStorage)
-│       ├── home.js
-│       ├── production.js
-│       ├── scada.js
-│       ├── quality.js
-│       ├── cmms.js
-│       └── analytics.js
+│   │   ├── style.css                          ← Portfolio + BrewLine theme
+│   │   ├── animations.css
+│   │   └── magic.css                          ← Magic Survival theme (purple/cyan/gold)
+│   ├── js/
+│   │   ├── main.js                            ← shared BrewLine simulator
+│   │   ├── home.js · production.js · scada.js · quality.js · cmms.js · analytics.js
+│   │   └── magic.js                           ← Magic Survival page interactions
+│   └── audio/                                 ← real game SFX (5 .wav files)
 ├── pages/
-│   ├── production.html
-│   ├── scada.html
-│   ├── quality.html
-│   ├── cmms.html
-│   ├── analytics.html
-│   ├── docs.html
-│   └── about.html
+│   ├── brewline.html                          ← BrewLine project hub
+│   ├── magic-survival.html                    ← Game showcase
+│   ├── about.html                             ← Personal About (editable placeholders)
+│   ├── production.html · scada.html · quality.html · cmms.html · analytics.html · docs.html
 ├── simulation/
-│   ├── simulator.py           ← Python replica of the JS simulator
+│   ├── simulator.py                           ← Python replica of BrewLine simulator
 │   └── influx_writer.py
 ├── dashboard/
-│   └── grafana_dashboard.json
+│   └── grafana_dashboard.json                 ← Grafana provisioning
+├── downloads/
+│   └── magic-survival.zip                     ← Game source + audio + guides
 ├── docs/
 │   └── ARCHITECTURE.md
-├── screenshots/               ← capture during marking
+├── screenshots/
 ├── README.md
 └── .gitignore
 ```
@@ -74,15 +71,13 @@ A modern, dark‑themed, fully responsive web simulation of a 5‑stage coffee�
 
 ## Running locally
 
-The site is plain static HTML — no build step.
-
 ```bash
-# any static server works, e.g.:
+# any static server works
 python -m http.server 8080
 # then open http://localhost:8080
 ```
 
-To run the Python simulator against a real InfluxDB instance:
+For the Python BrewLine simulator (optional — for streaming to a real InfluxDB):
 
 ```bash
 pip install influxdb-client
@@ -93,7 +88,15 @@ export INFLUX_BUCKET="brewline"
 python simulation/simulator.py --speed 12 --defect-rate 0.03
 ```
 
-Import `dashboard/grafana_dashboard.json` into Grafana to visualise.
+For Magic Survival (the game), download `downloads/magic-survival.zip`, then:
+
+```bash
+pip install pygame pillow
+python setup_assets.py
+python MSG.py
+```
+
+Full player guide is inside the zip (`PLAYER_GUIDE.txt`).
 
 ---
 
@@ -102,35 +105,20 @@ Import `dashboard/grafana_dashboard.json` into Grafana to visualise.
 ```bash
 git init
 git add .
-git commit -m "1 Setup"
+git commit -m "Portfolio v1"
 git branch -M main
-git remote add origin https://github.com/<your-handle>/brewline.git
+git remote add origin https://github.com/<your-handle>/<repo>.git
 git push -u origin main
 ```
 
 Then on GitHub: **Settings → Pages → Source → Deploy from a branch → `main` / `/ (root)`**.
-Your site will be served at `https://<your-handle>.github.io/brewline/`.
-
-### Commit plan
-
-| # | Title              |
-| - | ------------------ |
-| 1 | Setup              |
-| 2 | UI                 |
-| 3 | Production Logic   |
-| 4 | Dashboard          |
-| 5 | SCADA              |
-| 6 | CMMS               |
-| 7 | Quality Control    |
-| 8 | Documentation      |
-| 9 | Final Deployment   |
 
 ---
 
-## Author
+## About
 
-See [`pages/about.html`](pages/about.html) — name, student ID, university and course details are editable placeholders.
+Edit [`pages/about.html`](pages/about.html) to add your name, student ID, university, course details. Most fields use `contenteditable` so you can edit them inline in the browser, then paste the result back into source.
 
 ## License
 
-This project is released for academic use. Adapt freely with attribution.
+Released for academic / portfolio use. Adapt freely with attribution.

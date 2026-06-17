@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Magic Survival · [ Your Name ]</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23120726'/%3E%3Cpath d='M18 4 L10 18 L16 18 L14 28 L22 14 L16 14 Z' fill='%23fbbf24'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/magic.css" />
+</head>
+<body data-page="magic">
+  <!-- Starfield -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <!-- NAV (magic theme override) -->
+  <header class="m-nav">
+    <a class="m-nav__brand" href="../index.html">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <defs><linearGradient id="lg2" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#c8763a"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="#08051a"/>
+        <path d="M8 22 L16 6 L24 22 Z" fill="url(#lg2)"/>
+      </svg>
+      <span><strong>[ Your Name ]</strong><em>Portfolio · 2026</em></span>
+    </a>
+    <nav class="m-nav__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html">BrewLine</a>
+      <a href="magic-survival.html" class="active">Magic Survival</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="m-nav__burger" id="nav-burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="m-hero">
+      <div class="m-hero__bg" aria-hidden="true">
+        <div class="m-orb m-orb--purple"></div>
+        <div class="m-orb m-orb--cyan"></div>
+        <div class="m-orb m-orb--gold"></div>
+        <svg class="m-bolt" viewBox="0 0 200 320" aria-hidden="true">
+          <defs>
+            <linearGradient id="bolt-grad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#fef3c7"/>
+              <stop offset="50%" stop-color="#fbbf24"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="4"/></filter>
+          </defs>
+          <path d="M120 0 L40 160 L90 160 L60 320 L180 130 L120 130 Z" fill="url(#bolt-grad)" filter="url(#glow)" opacity=".8"/>
+          <path d="M120 0 L40 160 L90 160 L60 320 L180 130 L120 130 Z" fill="url(#bolt-grad)"/>
+        </svg>
+      </div>
+
+      <div class="m-hero__content">
+        <p class="m-eyebrow" data-testid="m-eyebrow"><span class="m-dot"></span> P·02 — Pygame survival roguelite</p>
+        <h1 class="m-hero__title" data-testid="m-title">
+          <span>Magic</span>
+          <em>Survival</em>
+        </h1>
+        <p class="m-hero__lead" data-testid="m-lead">
+          Pick a hero. Fight off waves of monsters with chained lightning and roaring firebreath.
+          Level up, upgrade your powers, and survive <strong>15 minutes</strong> to face the
+          <strong>8‑eyed Final Boss</strong>.
+        </p>
+        <div class="m-hero__cta">
+          <a href="../downloads/magic-survival.zip" class="m-btn m-btn--primary" data-testid="m-download">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download &amp; play
+          </a>
+          <a href="#how" class="m-btn m-btn--ghost" data-testid="m-howto">How to play</a>
+        </div>
+        <div class="m-hero__meta">
+          <span><strong>3</strong> classes</span>
+          <span><strong>15 min</strong> survival run</span>
+          <span><strong>Python · Pygame</strong></span>
+          <span><strong>Solo project</strong> · 2025</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASSES -->
+    <section class="m-section">
+      <header class="m-section__head">
+        <p class="m-eyebrow"><span class="m-dot"></span> Heroes</p>
+        <h2>Choose your hero.</h2>
+        <p class="m-section__lead">Each class has its own stat profile — pick the playstyle that fits you.</p>
+      </header>
+      <div class="m-classes" data-testid="m-classes">
+        <article class="m-class m-class--wizard">
+          <div class="m-class__art" aria-hidden="true">
+            <svg viewBox="0 0 80 80">
+              <circle cx="40" cy="48" r="22" fill="#9632ff"/>
+              <path d="M28 28 L52 28 L40 12 Z" fill="#0a0418"/>
+              <path d="M22 28 L58 28" stroke="#fbbf24" stroke-width="2"/>
+              <circle cx="32" cy="46" r="2.5" fill="#fff"/>
+              <circle cx="48" cy="46" r="2.5" fill="#fff"/>
+              <path d="M60 50 L72 38" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="72" cy="38" r="4" fill="#22d3ee" opacity=".9"/>
+            </svg>
+          </div>
+          <h3>Wizard</h3>
+          <p class="m-class__role">Balanced caster</p>
+          <ul>
+            <li><strong>HP</strong> · 180</li>
+            <li><strong>Speed</strong> · 5.0</li>
+            <li><strong>Damage</strong> · 14</li>
+            <li><strong>Atk speed</strong> · 1.2/s</li>
+          </ul>
+        </article>
+
+        <article class="m-class m-class--knight">
+          <div class="m-class__art" aria-hidden="true">
+            <svg viewBox="0 0 80 80">
+              <rect x="20" y="22" width="40" height="46" rx="6" fill="#7c7c7c"/>
+              <rect x="26" y="14" width="28" height="14" rx="3" fill="#4a4a4a"/>
+              <rect x="36" y="18" width="8" height="6" fill="#0a0418"/>
+              <rect x="32" y="40" width="16" height="3" fill="#fbbf24"/>
+              <path d="M14 70 L26 70 L26 38 L14 38 Z" fill="#a16207"/>
+              <path d="M54 38 L66 38 L66 70 L54 70 Z" fill="#9ca3af"/>
+            </svg>
+          </div>
+          <h3>Knight</h3>
+          <p class="m-class__role">Tank · sustains</p>
+          <ul>
+            <li><strong>HP</strong> · 350</li>
+            <li><strong>Speed</strong> · 3.5</li>
+            <li><strong>Damage</strong> · 18</li>
+            <li><strong>Atk speed</strong> · 0.7/s</li>
+          </ul>
+        </article>
+
+        <article class="m-class m-class--archer">
+          <div class="m-class__art" aria-hidden="true">
+            <svg viewBox="0 0 80 80">
+              <circle cx="40" cy="46" r="20" fill="#32c850"/>
+              <path d="M22 24 L34 30 L34 18 Z" fill="#0a4d1c"/>
+              <circle cx="34" cy="44" r="2.5" fill="#fff"/>
+              <circle cx="46" cy="44" r="2.5" fill="#fff"/>
+              <path d="M58 26 L74 50" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+              <path d="M58 24 L62 36" stroke="#fef3c7" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Archer</h3>
+          <p class="m-class__role">Glass cannon</p>
+          <ul>
+            <li><strong>HP</strong> · 150</li>
+            <li><strong>Speed</strong> · 6.5</li>
+            <li><strong>Damage</strong> · 12</li>
+            <li><strong>Atk speed</strong> · 1.6/s</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW TO PLAY -->
+    <section class="m-section" id="how">
+      <header class="m-section__head">
+        <p class="m-eyebrow"><span class="m-dot"></span> Controls</p>
+        <h2>How to play.</h2>
+        <p class="m-section__lead">No tutorial, no fuss — drop in and start moving.</p>
+      </header>
+
+      <div class="m-controls">
+        <div class="m-control">
+          <p class="m-control__label">Move</p>
+          <div class="m-keys">
+            <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+          </div>
+        </div>
+        <div class="m-control">
+          <p class="m-control__label">Inventory &amp; stats</p>
+          <div class="m-keys"><kbd>I</kbd></div>
+        </div>
+        <div class="m-control">
+          <p class="m-control__label">Restart (after win / death)</p>
+          <div class="m-keys"><kbd>R</kbd></div>
+        </div>
+        <div class="m-control">
+          <p class="m-control__label">Speed up · normal · slow down</p>
+          <div class="m-keys"><kbd>→</kbd><kbd>↓</kbd><kbd>←</kbd></div>
+        </div>
+        <div class="m-control">
+          <p class="m-control__label">Creative / debug</p>
+          <div class="m-keys"><kbd>C</kbd></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABILITIES -->
+    <section class="m-section">
+      <header class="m-section__head">
+        <p class="m-eyebrow"><span class="m-dot"></span> Powers</p>
+        <h2>Two abilities. Seven levels each.</h2>
+        <p class="m-section__lead">Pick them up from the level‑up menu. They scale dramatically — level 7 is a different game.</p>
+      </header>
+
+      <div class="m-abilities">
+        <article class="m-ability">
+          <div class="m-ability__head">
+            <div class="m-ability__icon" style="background: radial-gradient(circle, #fed7aa, #ea580c 60%, transparent 70%);">🔥</div>
+            <div>
+              <h3>Firebreath</h3>
+              <p>Cone of fire particles around you</p>
+            </div>
+            <button class="m-play" data-audio="firebreath" data-testid="play-firebreath" aria-label="Play sound">▶ Sample</button>
+          </div>
+          <ul>
+            <li>Damage scales <strong>×3</strong> at level 7</li>
+            <li>Triple emission rate &amp; <strong>5× range</strong> at max level</li>
+            <li>Cooldown drops from <strong>3.0s → 1.8s</strong></li>
+          </ul>
+          <audio preload="none" src="../assets/audio/firebreath.wav" id="audio-firebreath"></audio>
+        </article>
+
+        <article class="m-ability">
+          <div class="m-ability__head">
+            <div class="m-ability__icon" style="background: radial-gradient(circle, #a5f3fc, #06b6d4 60%, transparent 70%);">⚡</div>
+            <div>
+              <h3>Lightning</h3>
+              <p>Chains across multiple enemies in 500&nbsp;px range</p>
+            </div>
+            <button class="m-play" data-audio="lightning" data-testid="play-lightning" aria-label="Play sound">▶ Sample</button>
+          </div>
+          <ul>
+            <li>Chains to <strong>2 + level</strong> additional targets</li>
+            <li>Width &amp; damage scale every <strong>3 levels</strong></li>
+            <li>Level 7 — <strong>×2.2 damage</strong>, double bolt width</li>
+          </ul>
+          <audio preload="none" src="../assets/audio/lightning.wav" id="audio-lightning"></audio>
+        </article>
+      </div>
+    </section>
+
+    <!-- BOSS -->
+    <section class="m-section m-boss">
+      <div class="m-boss__bg" aria-hidden="true">
+        <div class="m-boss__eye-grid">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="m-boss__content">
+        <p class="m-eyebrow"><span class="m-dot"></span> Endgame</p>
+        <h2>The 8‑eyed Final Boss.</h2>
+        <p class="m-section__lead">
+          At the 15‑minute mark, the arena darkens. A purple horror with eight glowing eyes appears
+          and starts hurling cyan orbs across the screen. Dodge, weave, chain your lightning, and
+          unload everything you've got — the run ends when one of you stops moving.
+        </p>
+        <ul class="m-boss__tips">
+          <li>Keep moving — orbs are slow but relentless.</li>
+          <li>Lightning chains shred adds during the boss phase.</li>
+          <li>Boss damage scales the longer you fight — don't stall.</li>
+          <li>Survive the kill and you hear <button class="m-play m-play--inline" data-audio="victory" data-testid="play-victory">▶ this</button>.</li>
+        </ul>
+        <audio preload="none" src="../assets/audio/victory.wav" id="audio-victory"></audio>
+        <audio preload="none" src="../assets/audio/level_up.wav" id="audio-level_up"></audio>
+        <audio preload="none" src="../assets/audio/game_over.wav" id="audio-game_over"></audio>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="m-section m-cta" id="download">
+      <h2>Run it on your machine.</h2>
+      <p class="m-section__lead">A clean bundle with the full source, READMEs, the player guide and every real sound effect. Plug Python in and go.</p>
+
+      <div class="m-cta__grid">
+        <div class="m-card">
+          <h4>1 · Install</h4>
+          <pre><code>pip install pygame pillow</code></pre>
+        </div>
+        <div class="m-card">
+          <h4>2 · Generate placeholder art</h4>
+          <pre><code>python setup_assets.py</code></pre>
+        </div>
+        <div class="m-card">
+          <h4>3 · Run</h4>
+          <pre><code>python MSG.py</code></pre>
+        </div>
+      </div>
+
+      <a href="../downloads/magic-survival.zip" class="m-btn m-btn--primary m-btn--big" data-testid="m-download-big">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Magic Survival (.zip)
+      </a>
+      <p class="m-cta__hint">~750 KB · MSG.py · setup_assets.py · PLAYER_GUIDE.txt · QUICKSTART.md · 5 sound effects</p>
+    </section>
+  </main>
+
+  <footer class="m-footer">
+    <div><strong>Magic Survival</strong> · A solo Pygame project · <em>2025</em></div>
+    <div class="m-footer__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html">BrewLine</a>
+      <a href="about.html">About</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/magic.js"></script>
+</body>
+</html>
