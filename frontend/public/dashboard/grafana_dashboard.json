@@ -1,0 +1,67 @@
+{
+  "annotations": { "list": [] },
+  "title": "BrewLine — Smart Coffee Capsule Production",
+  "uid": "brewline-main",
+  "version": 1,
+  "schemaVersion": 38,
+  "tags": ["brewline", "manufacturing", "scada"],
+  "time": { "from": "now-1h", "to": "now" },
+  "refresh": "5s",
+  "templating": { "list": [] },
+  "panels": [
+    {
+      "id": 1, "type": "timeseries", "title": "Throughput (capsules / min)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"brewline\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"brewline_summary\" and r._field == \"produced\") |> derivative(unit: 1m, nonNegative: true)"
+      }]
+    },
+    {
+      "id": 2, "type": "stat", "title": "Total produced (shift)",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"brewline\") |> range(start: -8h) |> filter(fn: (r) => r._measurement == \"brewline_summary\" and r._field == \"produced\") |> last()"
+      }]
+    },
+    {
+      "id": 3, "type": "stat", "title": "Defective",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 50 }] } } },
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"brewline\") |> range(start: -8h) |> filter(fn: (r) => r._measurement == \"brewline_summary\" and r._field == \"defective\") |> last()"
+      }]
+    },
+    {
+      "id": 4, "type": "gauge", "title": "Sealer temperature (°C)",
+      "gridPos": { "x": 12, "y": 4, "w": 6, "h": 4 },
+      "fieldConfig": { "defaults": { "unit": "celsius", "min": 60, "max": 110, "thresholds": { "steps": [{ "color": "blue" }, { "color": "green", "value": 88 }, { "color": "red", "value": 100 }] } } },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{ "refId": "A", "query": "from(bucket:\"brewline\")|>range(start:-5m)|>filter(fn:(r)=>r._field==\"temp\")|>last()" }]
+    },
+    {
+      "id": 5, "type": "gauge", "title": "Piston pressure (bar)",
+      "gridPos": { "x": 18, "y": 4, "w": 6, "h": 4 },
+      "fieldConfig": { "defaults": { "unit": "pressurebar", "min": 0, "max": 8 } },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{ "refId": "A", "query": "from(bucket:\"brewline\")|>range(start:-5m)|>filter(fn:(r)=>r._field==\"pressure\")|>last()" }]
+    },
+    {
+      "id": 6, "type": "barchart", "title": "Machine health",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{ "refId": "A", "query": "from(bucket:\"brewline\")|>range(start:-5m)|>filter(fn:(r)=>r._measurement==\"brewline_health\")|>last()" }]
+    },
+    {
+      "id": 7, "type": "table", "title": "Defect ledger",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "influxdb", "uid": "influxdb-brewline" },
+      "targets": [{ "refId": "A", "query": "from(bucket:\"brewline\")|>range(start:-1h)|>filter(fn:(r)=>r._measurement==\"brewline_inspection\" and r.status==\"REJECT\")" }]
+    }
+  ]
+}

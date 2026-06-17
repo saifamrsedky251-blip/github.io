@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About · BrewLine</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="about">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="8" fill="#1a120b"/><path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/></svg></span>
+      <span><strong>BrewLine</strong><em>Capsule Factory OS</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="production.html">Production</a>
+      <a href="scada.html">SCADA</a>
+      <a href="quality.html">Quality</a>
+      <a href="cmms.html">CMMS</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> About</p>
+        <h1 class="page__title">Project &amp; author.</h1>
+        <p class="page__sub">Replace the placeholders below with your student information before submission.</p>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <section class="card">
+        <h4><span class="dot"></span> Author</h4>
+        <table class="table">
+          <tbody>
+            <tr><th style="width: 160px;">Name</th>          <td contenteditable="true" data-testid="about-name"     style="color:var(--ink-cream)">[ Your full name ]</td></tr>
+            <tr><th>Student ID</th>                          <td contenteditable="true" data-testid="about-id"       style="color:var(--ink-cream)">[ Your student ID ]</td></tr>
+            <tr><th>University</th>                          <td contenteditable="true" data-testid="about-uni"      style="color:var(--ink-cream)">[ Your university ]</td></tr>
+            <tr><th>Course</th>                              <td contenteditable="true" data-testid="about-course"   style="color:var(--ink-cream)">[ Course / module title ]</td></tr>
+            <tr><th>Supervisor</th>                          <td contenteditable="true" data-testid="about-sup"      style="color:var(--ink-cream)">[ Supervisor name ]</td></tr>
+            <tr><th>Academic year</th>                       <td contenteditable="true" data-testid="about-year"     style="color:var(--ink-cream)">2025 / 2026</td></tr>
+          </tbody>
+        </table>
+        <p class="mono" style="font-size:11px; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.2em; margin-top:12px">Tip: cells above are <code>contenteditable</code>. Edit inline, then copy the HTML into source.</p>
+      </section>
+
+      <section class="card">
+        <h4><span class="dot"></span> Project description</h4>
+        <p style="color:var(--ink-cream-2);">
+          BrewLine is a full <strong>Smart Coffee Capsule Manufacturing &amp; Monitoring System</strong> built for a university Industrial Informatics module.
+          It simulates a five‑stage production line for single‑serve coffee capsules and demonstrates modern industrial software practices: animated process visualisation,
+          a SCADA‑style HMI, an inspection / defect classifier, a CMMS for machine health, and an analytics layer
+          that ships metrics to InfluxDB and renders them in Grafana.
+        </p>
+        <p style="color:var(--ink-cream-2);">
+          The entire site is deployed as a static bundle on <strong>GitHub Pages</strong>. The Python simulator is included in <code>/simulation/</code>
+          so the same data flow can be reproduced locally against a real InfluxDB / Grafana stack.
+        </p>
+
+        <h4 style="margin-top: 20px;"><span class="dot"></span> Modules delivered</h4>
+        <ul style="color:var(--ink-cream-2); padding-left:18px;">
+          <li>Landing page with live SCADA snapshot</li>
+          <li>Animated five‑stage production simulation</li>
+          <li>SCADA HMI with PVs, gauges, alarm bus</li>
+          <li>Quality control + defect classifier (5 classes)</li>
+          <li>CMMS — health cards, schedule, repair log</li>
+          <li>Analytics — InfluxDB / Grafana integration</li>
+          <li>Documentation &amp; architecture overview</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div><strong>BrewLine</strong> · About</div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="docs.html">Docs</a></div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

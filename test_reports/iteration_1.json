@@ -1,0 +1,61 @@
+{
+  "summary": "Frontend-only smoke test of BrewLine static site. 7 pages and almost all data-testid hooks are present and most flows work, but the core simulator KPI 'produced' counter never increments on either the landing hero or the production page — even with the conveyor reported as data-running='true' and the SCADA runtime ticking. Defect-injection counter, sliders, navigation, SCADA E-STOP toggle, Analytics canvases, Grafana JSON link, About contenteditable cells, and all 9 Docs sections work.",
+  "tested_scope": ["frontend"],
+  "passed": [
+    "Landing page loads with title 'BrewLine • Smart Coffee Capsule Manufacturing'; hero-produced testid present",
+    "All 7 nav links (production/scada/quality/cmms/analytics/docs/about) resolve",
+    "Production page exposes all required testids: prod-start, prod-stop, prod-reset, prod-estop, speed-slider, defect-slider, speed-val, defect-val, kpi-produced, kpi-defective, kpi-speed",
+    "Sliders update labels: speed-slider 20 -> speed-val=20 & kpi-speed=20; defect-slider 7 -> defect-val=7.0",
+    "All 5 inject-defect buttons (underfill/overfill/seal/shell/pack) each +1 kpi-defective: 0 -> 5",
+    "recent-table populates with CAP-YYYYMMDD-XXXXXX product IDs (e.g. CAP-20260617-000001)",
+    "SCADA: scada-runtime increments (00:00:17 -> 00:00:20); scada-state toggles RUNNING -> E-STOP via E-STOP button",
+    "Quality page renders table with 6 rows",
+    "CMMS: all 5 health cards (loader/filler/sealer/packer/inspector) and repair-submit testid present",
+    "Analytics: 4 sparkline canvases render; dl-grafana href = ../dashboard/grafana_dashboard.json (file exists on disk)",
+    "About: all 4 contenteditable cells (name/id/uni/course) are contenteditable=true and accept typed text",
+    "Docs: all 9 anchors (intro, objectives, arch, stack, impl, testing, ai, future, deploy) render",
+    "localStorage key 'brewline_state_v1' present after interaction"
+  ],
+  "failed": [
+    {
+      "area": "Landing page auto-run",
+      "issue": "[data-testid='hero-produced'] stays at 0 over 5s on first load (line is supposed to auto-run on home page).",
+      "evidence": "Initial hero produced: 0 -> After 5s hero produced: 0 (localStorage cleared before test).",
+      "priority": "HIGH"
+    },
+    {
+      "area": "Production simulator",
+      "issue": "After clicking prod-start, [data-testid='kpi-produced'] does not increment even after 6s at speed=20 cpm (~2 capsules expected). Conveyor element shows data-running='true' and SCADA runtime ticks, so the tick loop runs, but the 'produced' accumulator never increases. kpi-defective only changes via manual injects.",
+      "evidence": "prod before: 0 -> prod after start+6s: 0; conveyor data-running='true'; recent-table only contains REJECT rows produced by the inject-defect clicks, no PASS rows.",
+      "priority": "HIGH"
+    },
+    {
+      "area": "SCADA E-STOP release behavior",
+      "issue": "Pressing E-STOP a second time returns scada-state to 'IDLE' instead of resuming 'RUNNING'. Spec says it should release E-STOP; ambiguous whether IDLE is acceptable, but if the line was running before, user likely expects it to resume or at least be ready.",
+      "evidence": "scada-state RUNNING -> E-STOP -> IDLE after second click.",
+      "priority": "LOW"
+    },
+    {
+      "area": "Quality page donut",
+      "issue": "No element with [data-testid='qc-yield'] (or similar) found exposing the yield % at donut center; could not verify yield text. Table renders fine.",
+      "evidence": "page.evaluate for donut/qc-yield text returned null.",
+      "priority": "MEDIUM"
+    },
+    {
+      "area": "CMMS repair log",
+      "issue": "Clicking [data-testid='repair-submit'] after filling machine/note did not add a new row to repair-log-list (count stayed at 1). May be due to missing [data-testid='repair-machine']/[data-testid='repair-note'] selectors so form fields weren't filled correctly, or submit handler not wired.",
+      "evidence": "repair-log rows: 1 -> 1 (no change).",
+      "priority": "MEDIUM"
+    }
+  ],
+  "action_items": [
+    "Fix the production simulator so kpi-produced and hero-produced actually increment when the line is running (likely a bug in main.js / production.js tick loop where 'produced' is never incremented; defects path works, throughput path does not).",
+    "Ensure the landing-page line auto-starts as stated in the spec, or update the spec.",
+    "Add [data-testid='qc-yield'] to the donut center label on quality.html so yield % is queryable.",
+    "Verify CMMS repair form: confirm form fields have data-testid='repair-machine' and 'repair-note', and that repair-submit appends to [data-testid='repair-log-list'].",
+    "Optional: clarify SCADA E-STOP release state (RUNNING vs IDLE)."
+  ],
+  "success_rate": {"backend": "N/A", "frontend": "~80%"},
+  "retest_needed": true,
+  "full_testing_deferred": true
+}

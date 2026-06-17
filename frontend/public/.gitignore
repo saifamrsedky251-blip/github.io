@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# logs
+*.log
+
+# build artifacts
+dist/
+build/
+
+# environment
+.env
+.env.local

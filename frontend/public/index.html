@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrewLine • Smart Coffee Capsule Manufacturing</title>
+  <meta name="description" content="Industrial control, SCADA, CMMS and analytics for a simulated coffee capsule production line." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a120b'/%3E%3Cpath d='M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z' fill='%23b87333'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+<body data-page="home">
+  <div id="root" style="display:none"></div>
+
+  <!-- NAVIGATION -->
+  <header class="nav" data-testid="site-nav">
+    <a class="nav__brand" href="index.html" data-testid="nav-brand">
+      <span class="nav__logo">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#1a120b"/>
+          <path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/>
+        </svg>
+      </span>
+      <span>
+        <strong>BrewLine</strong>
+        <em>Capsule Factory OS</em>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html" class="active" data-testid="nav-home">Home</a>
+      <a href="pages/production.html" data-testid="nav-production">Production</a>
+      <a href="pages/scada.html" data-testid="nav-scada">SCADA</a>
+      <a href="pages/quality.html" data-testid="nav-quality">Quality</a>
+      <a href="pages/cmms.html" data-testid="nav-cmms">CMMS</a>
+      <a href="pages/analytics.html" data-testid="nav-analytics">Analytics</a>
+      <a href="pages/docs.html" data-testid="nav-docs">Docs</a>
+      <a href="pages/about.html" data-testid="nav-about">About</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger" data-testid="nav-burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <div class="kicker" data-testid="hero-kicker">
+            <span class="dot pulse"></span>
+            Production line: <strong>ONLINE</strong>
+          </div>
+          <h1 class="hero__title">
+            Where ground coffee<br/>becomes <span class="ink-copper">measurable data.</span>
+          </h1>
+          <p class="hero__lead">
+            BrewLine is a simulated, end‑to‑end smart factory for coffee capsules.
+            Watch capsules travel the conveyor, monitor SCADA in real time,
+            inspect quality defects, schedule maintenance and stream metrics to InfluxDB &amp; Grafana.
+          </p>
+          <div class="hero__cta">
+            <a href="pages/production.html" class="btn btn--primary" data-testid="cta-start-line">
+              Enter the line →
+            </a>
+            <a href="pages/docs.html" class="btn btn--ghost" data-testid="cta-docs">
+              Read documentation
+            </a>
+          </div>
+
+          <ul class="hero__chips">
+            <li><span>01</span> Load capsule</li>
+            <li><span>02</span> Fill coffee</li>
+            <li><span>03</span> Compress &amp; seal</li>
+            <li><span>04</span> Packaging</li>
+            <li><span>05</span> Inspect</li>
+          </ul>
+        </div>
+
+        <aside class="hero__panel" data-testid="hero-live-panel">
+          <header>
+            <span class="dot pulse"></span>
+            Live SCADA snapshot
+            <em id="hero-clock">--:--:--</em>
+          </header>
+          <div class="hero__panel-grid">
+            <div class="stat">
+              <label>Produced</label>
+              <strong data-counter="produced" data-testid="hero-produced">0</strong>
+              <small>capsules / shift</small>
+            </div>
+            <div class="stat">
+              <label>OEE</label>
+              <strong data-counter="oee" data-testid="hero-oee">0</strong>
+              <small>% efficiency</small>
+            </div>
+            <div class="stat">
+              <label>Temperature</label>
+              <strong data-counter="temp" data-testid="hero-temp">0</strong>
+              <small>°C sealer</small>
+            </div>
+            <div class="stat">
+              <label>Pressure</label>
+              <strong data-counter="press" data-testid="hero-press">0</strong>
+              <small>bar piston</small>
+            </div>
+          </div>
+          <div class="hero__panel-chart">
+            <canvas id="hero-spark" width="600" height="120"></canvas>
+          </div>
+          <footer>
+            Streaming → <code>influxdb://brewline/metrics</code>
+          </footer>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MODULE GRID -->
+    <section class="modules" id="modules">
+      <header class="section-head">
+        <p class="kicker"><span class="dot"></span> System modules</p>
+        <h2>Eight modules. One factory.</h2>
+      </header>
+      <div class="modules__grid">
+        <a class="module" href="pages/production.html" data-testid="module-production">
+          <span class="module__id">M·01</span>
+          <h3>Production Line</h3>
+          <p>Animated conveyor, five stages, start / stop / e‑stop, live counters.</p>
+        </a>
+        <a class="module" href="pages/scada.html" data-testid="module-scada">
+          <span class="module__id">M·02</span>
+          <h3>SCADA</h3>
+          <p>Industrial HMI with temperature, pressure, runtime &amp; alarm bus.</p>
+        </a>
+        <a class="module" href="pages/quality.html" data-testid="module-quality">
+          <span class="module__id">M·03</span>
+          <h3>Quality Control</h3>
+          <p>Defect classifier — underfill, overfill, seal failure, shell, pack.</p>
+        </a>
+        <a class="module" href="pages/cmms.html" data-testid="module-cmms">
+          <span class="module__id">M·04</span>
+          <h3>CMMS</h3>
+          <p>Health cards, scheduled maintenance, downtime &amp; repair log.</p>
+        </a>
+        <a class="module" href="pages/analytics.html" data-testid="module-analytics">
+          <span class="module__id">M·05</span>
+          <h3>Analytics</h3>
+          <p>InfluxDB &amp; Grafana integration plan with provisioning JSON.</p>
+        </a>
+        <a class="module" href="pages/docs.html" data-testid="module-docs">
+          <span class="module__id">M·06</span>
+          <h3>Documentation</h3>
+          <p>Architecture, tech stack, testing strategy &amp; future work.</p>
+        </a>
+        <a class="module" href="pages/about.html" data-testid="module-about">
+          <span class="module__id">M·07</span>
+          <h3>About</h3>
+          <p>Student &amp; course information for project grading.</p>
+        </a>
+        <a class="module module--accent" href="pages/production.html" data-testid="module-cta">
+          <span class="module__id">M·08</span>
+          <h3>Run a shift →</h3>
+          <p>Spin the conveyor, trigger defects, watch metrics flow.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE STRIP -->
+    <section class="arch">
+      <header class="section-head">
+        <p class="kicker"><span class="dot"></span> Architecture</p>
+        <h2>From shop floor → time series → dashboard.</h2>
+      </header>
+      <div class="arch__pipe">
+        <div class="arch__node"><span>01</span><strong>Simulator</strong><em>Python · JS</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>02</span><strong>SCADA UI</strong><em>HMI · Alarms</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>03</span><strong>InfluxDB</strong><em>time‑series</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>04</span><strong>Grafana</strong><em>dashboards</em></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>BrewLine</strong> · Smart Coffee Capsule Manufacturing &amp; Monitoring System
+      <em>University project · graded build</em>
+    </div>
+    <div class="footer__links">
+      <a href="pages/docs.html">Docs</a>
+      <a href="pages/about.html">About</a>
+      <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics · BrewLine</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="analytics">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="8" fill="#1a120b"/><path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/></svg></span>
+      <span><strong>BrewLine</strong><em>Capsule Factory OS</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="production.html">Production</a>
+      <a href="scada.html">SCADA</a>
+      <a href="quality.html">Quality</a>
+      <a href="cmms.html">CMMS</a>
+      <a href="analytics.html" class="active">Analytics</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> Module M·05 — Analytics</p>
+        <h1 class="page__title">Telemetry, persisted.</h1>
+        <p class="page__sub">Below: a live mini‑dashboard powered by in‑browser state. In production, the same metrics stream to InfluxDB and render in Grafana — provisioning JSON included in the repository.</p>
+      </div>
+    </header>
+
+    <section class="grid-4" style="margin-bottom: 22px;">
+      <div class="card"><h4>Throughput</h4><canvas id="ch-prod" width="500" height="150"></canvas></div>
+      <div class="card"><h4>Defects</h4><canvas id="ch-def" width="500" height="150"></canvas></div>
+      <div class="card"><h4>Temperature</h4><canvas id="ch-temp" width="500" height="150"></canvas></div>
+      <div class="card"><h4>Efficiency</h4><canvas id="ch-eff" width="500" height="150"></canvas></div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h4><span class="dot"></span> InfluxDB integration</h4>
+        <p style="color:var(--ink-cream-2); font-size:14px;">Metrics are written to an InfluxDB v2 bucket using line protocol. The Python simulator (<code>/simulation/influx_writer.py</code>) emits one point per stage per second.</p>
+        <pre style="background:var(--ink-coal); border:1px solid rgba(243,231,211,.06); padding:14px; border-radius:10px; overflow:auto; font-size:12px; font-family:var(--font-mono); color:var(--ink-cream);">brewline,line=A,stage=fill capsules=12i,defects=0i,temp=92.4,pressure=4.31 1709321400000000000
+brewline,line=A,stage=seal capsules=12i,defects=1i,temp=94.1,pressure=4.42 1709321401000000000</pre>
+        <p class="mono" style="font-size:11px; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.2em; margin-top:14px">
+          bucket: <strong style="color:var(--ink-copper-2)">brewline</strong> ·
+          org: <strong style="color:var(--ink-copper-2)">university</strong> ·
+          retention: <strong style="color:var(--ink-copper-2)">30d</strong>
+        </p>
+      </section>
+
+      <section class="card">
+        <h4><span class="dot"></span> Grafana dashboard</h4>
+        <p style="color:var(--ink-cream-2); font-size:14px;">A provisioning JSON is included at <code>/dashboard/grafana_dashboard.json</code>. Import it into your Grafana instance and point its data‑source at your InfluxDB bucket.</p>
+        <ul style="color:var(--ink-cream-2); font-size:14px; padding-left:18px;">
+          <li>Panel 1 — Throughput (capsules / min)</li>
+          <li>Panel 2 — Pass vs Reject (stacked)</li>
+          <li>Panel 3 — Sealer temperature (gauge + history)</li>
+          <li>Panel 4 — Piston pressure</li>
+          <li>Panel 5 — Machine health (5 stat panels)</li>
+          <li>Panel 6 — Alarm timeline (table)</li>
+        </ul>
+        <a class="btn btn--ghost btn--sm" href="../dashboard/grafana_dashboard.json" download data-testid="dl-grafana">Download dashboard JSON</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div><strong>BrewLine</strong> · M·05 Analytics</div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="docs.html">Docs</a></div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/analytics.js"></script>
+</body>
+</html>
