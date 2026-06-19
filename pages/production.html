@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Production Line · BrewLine</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="production">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1a120b"/><path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/></svg>
+      </span>
+      <span><strong>BrewLine</strong><em>Capsule Factory OS</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html" class="active">BrewLine</a>
+      <a href="magic-survival.html">Magic Survival</a>
+      <a href="about.html">About</a>
+    </nav>
+    <nav class="nav__links" style="margin-left:auto; gap:14px; font-size:12.5px;">
+      <a href="production.html" class="active">Production</a>
+      <a href="scada.html">SCADA</a>
+      <a href="quality.html">Quality</a>
+      <a href="cmms.html">CMMS</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> Module M·01 — Production Line</p>
+        <h1 class="page__title">Five‑stage capsule production.</h1>
+        <p class="page__sub">Watch each capsule progress through load → fill → seal → pack → inspect. Trigger faults, change line speed, and observe the impact on throughput in real time.</p>
+      </div>
+      <div class="controls">
+        <button class="btn btn--good btn--sm" data-testid="prod-start" id="btn-start">▶ Start</button>
+        <button class="btn btn--warn btn--sm" data-testid="prod-stop" id="btn-stop">■ Stop</button>
+        <button class="btn btn--ghost btn--sm" data-testid="prod-reset" id="btn-reset">↺ Reset</button>
+        <button class="btn btn--danger btn--sm" data-testid="prod-estop" id="btn-estop">⚠ E‑STOP</button>
+      </div>
+    </header>
+
+    <!-- live KPIs -->
+    <section class="grid-4" style="margin-bottom: 22px;">
+      <div class="metric metric--copper"><label>Produced</label><strong data-testid="kpi-produced" id="kpi-produced">0</strong><small>capsules / shift</small></div>
+      <div class="metric metric--bad"><label>Defective</label><strong data-testid="kpi-defective" id="kpi-defective">0</strong><small>units rejected</small></div>
+      <div class="metric metric--good"><label>Efficiency (OEE)</label><strong data-testid="kpi-efficiency" id="kpi-efficiency">0%</strong><small>yield × utilisation</small></div>
+      <div class="metric"><label>Speed</label><strong data-testid="kpi-speed" id="kpi-speed">0</strong><small>capsules / min</small></div>
+    </section>
+
+    <!-- stage bar + conveyor -->
+    <section class="card" style="margin-bottom: 22px;">
+      <h4><span class="dot pulse"></span> Live conveyor — <span id="line-state-label" data-testid="line-state-label">IDLE</span></h4>
+      <div class="line-stage-bar" id="line-stage-bar">
+        <div class="line-stage" data-stage="1"><label>Stage 01</label><strong>Load capsule</strong><small>Loader • feeder</small></div>
+        <div class="line-stage" data-stage="2"><label>Stage 02</label><strong>Fill coffee</strong><small>Doser • 5.5 g</small></div>
+        <div class="line-stage" data-stage="3"><label>Stage 03</label><strong>Compress &amp; seal</strong><small>Foil sealer • 94 °C</small></div>
+        <div class="line-stage" data-stage="4"><label>Stage 04</label><strong>Packaging</strong><small>Sleeve • 10‑pack</small></div>
+        <div class="line-stage" data-stage="5"><label>Stage 05</label><strong>Inspect</strong><small>Vision QC</small></div>
+      </div>
+
+      <div class="conveyor-wrap" id="conveyor" data-running="false" data-testid="conveyor">
+        <div class="conveyor-belt"></div>
+        <!-- machines anchored at 5 stages -->
+        <div class="machine" data-state="stop" style="left: 6%"><span class="led"></span></div>
+        <div class="machine" data-state="stop" style="left: 23%"><span class="led"></span></div>
+        <div class="machine" data-state="stop" style="left: 40%"><span class="led"></span></div>
+        <div class="machine" data-state="stop" style="left: 57%"><span class="led"></span></div>
+        <div class="machine" data-state="stop" style="left: 74%"><span class="led"></span></div>
+        <div class="reject-lane"><div>REJECT<br/>LANE</div></div>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h4><span class="dot"></span> Tuning</h4>
+        <div style="display:grid; gap:14px;">
+          <label style="display:grid; gap:6px;">
+            <span class="mono" style="font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-mute)">Line speed — <strong id="speed-val" data-testid="speed-val">12</strong> cpm</span>
+            <input type="range" min="1" max="40" value="12" id="speed-slider" data-testid="speed-slider" style="width:100%">
+          </label>
+          <label style="display:grid; gap:6px;">
+            <span class="mono" style="font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-mute)">Target defect rate — <strong id="defect-val" data-testid="defect-val">3.0</strong> %</span>
+            <input type="range" min="0" max="20" step="1" value="3" id="defect-slider" data-testid="defect-slider" style="width:100%">
+          </label>
+          <div>
+            <p class="mono" style="font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-mute); margin:0 0 8px">Inject defect</p>
+            <div class="controls">
+              <button class="btn btn--ghost btn--sm" data-defect="underfill" data-testid="inject-underfill">Underfill</button>
+              <button class="btn btn--ghost btn--sm" data-defect="overfill"  data-testid="inject-overfill">Overfill</button>
+              <button class="btn btn--ghost btn--sm" data-defect="seal"      data-testid="inject-seal">Seal fail</button>
+              <button class="btn btn--ghost btn--sm" data-defect="shell"     data-testid="inject-shell">Shell damage</button>
+              <button class="btn btn--ghost btn--sm" data-defect="pack"      data-testid="inject-pack">Pack fail</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h4><span class="dot"></span> Recent products</h4>
+        <div style="max-height: 280px; overflow:auto;">
+          <table class="table" data-testid="recent-table">
+            <thead><tr><th>Product ID</th><th>Status</th><th>Reason</th><th>Time</th></tr></thead>
+            <tbody id="recent-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div><strong>BrewLine</strong> · M·01 Production · <em>simulation tick = 1 Hz</em></div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="docs.html">Docs</a></div>
+  <div data-testid="copyright" style="width:100%; text-align:center; padding-top:16px; margin-top:8px; border-top:1px solid rgba(243,231,211,.06); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); opacity:.85;">© 2026 Saif Ahmed · All rights reserved.</div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/production.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrewLine · Saif Ahmed</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="brewline-hub">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+          <defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#c8763a"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+          <rect width="32" height="32" rx="8" fill="#0e0b08"/>
+          <path d="M8 22 L16 6 L24 22 Z" fill="url(#lg)"/>
+        </svg>
+      </span>
+      <span><strong>Saif Ahmed</strong><em>Portfolio · 2026</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html" class="active">BrewLine</a>
+      <a href="magic-survival.html">Magic Survival</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> Project · Industrial Informatics</p>
+        <h1 class="page__title">BrewLine — <span class="ink-copper">Smart Coffee Capsule Factory</span></h1>
+        <p class="page__sub">A simulated end‑to‑end manufacturing line for single‑serve coffee capsules. Five animated production stages, an industrial SCADA HMI, defect classifier, CMMS health management and a time‑series analytics layer that streams to InfluxDB &amp; Grafana.</p>
+      </div>
+    </header>
+
+    <!-- LIVE SNAPSHOT -->
+    <section class="grid-4" style="margin-bottom: 28px;">
+      <div class="metric metric--copper"><label>Produced</label><strong data-testid="hub-produced">0</strong><small>capsules / shift</small></div>
+      <div class="metric metric--good"><label>Efficiency</label><strong data-testid="hub-oee">0%</strong><small>OEE</small></div>
+      <div class="metric"><label>Sealer</label><strong data-testid="hub-temp">--</strong><small>°C</small></div>
+      <div class="metric"><label>State</label><strong data-testid="hub-state">IDLE</strong><small>line status</small></div>
+    </section>
+
+    <!-- MODULES -->
+    <section>
+      <div class="section-head" style="padding-top: 20px;">
+        <div>
+          <p class="kicker"><span class="dot"></span> Modules</p>
+          <h2>Eight modules. One factory.</h2>
+        </div>
+      </div>
+      <div class="modules__grid" style="max-width: none;">
+        <a class="module" href="production.html" data-testid="hub-production">
+          <span class="module__id">M·01</span>
+          <h3>Production Line</h3>
+          <p>Animated conveyor, five stages, start / stop / e‑stop, live counters.</p>
+        </a>
+        <a class="module" href="scada.html" data-testid="hub-scada">
+          <span class="module__id">M·02</span>
+          <h3>SCADA</h3>
+          <p>Industrial HMI with temperature, pressure, runtime &amp; alarm bus.</p>
+        </a>
+        <a class="module" href="quality.html" data-testid="hub-quality">
+          <span class="module__id">M·03</span>
+          <h3>Quality Control</h3>
+          <p>Defect classifier — underfill, overfill, seal failure, shell, pack.</p>
+        </a>
+        <a class="module" href="cmms.html" data-testid="hub-cmms">
+          <span class="module__id">M·04</span>
+          <h3>CMMS</h3>
+          <p>Health cards, scheduled maintenance, downtime &amp; repair log.</p>
+        </a>
+        <a class="module" href="analytics.html" data-testid="hub-analytics">
+          <span class="module__id">M·05</span>
+          <h3>Analytics</h3>
+          <p>InfluxDB &amp; Grafana integration with provisioning JSON.</p>
+        </a>
+        <a class="module" href="docs.html" data-testid="hub-docs">
+          <span class="module__id">M·06</span>
+          <h3>Documentation</h3>
+          <p>Architecture, tech stack, testing strategy &amp; future work.</p>
+        </a>
+        <a class="module module--accent" href="production.html" data-testid="hub-run">
+          <span class="module__id">M·07</span>
+          <h3>Run a shift →</h3>
+          <p>Spin the conveyor, trigger defects, watch metrics flow.</p>
+        </a>
+        <a class="module" href="../downloads/" data-testid="hub-source" style="opacity:.85;">
+          <span class="module__id">M·08</span>
+          <h3>Source &amp; deploy</h3>
+          <p>Static bundle deployable to GitHub Pages. See documentation.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section style="margin-top: 60px;">
+      <div class="section-head" style="padding-top: 0;">
+        <div>
+          <p class="kicker"><span class="dot"></span> Stack</p>
+          <h2>Built with.</h2>
+        </div>
+      </div>
+      <div class="arch__pipe">
+        <div class="arch__node"><span>UI</span><strong>HTML · CSS · JS</strong><em>vanilla, no framework</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>SIM</span><strong>Python</strong><em>1 Hz simulator</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>TSDB</span><strong>InfluxDB v2</strong><em>brewline bucket</em></div>
+        <div class="arch__arrow">→</div>
+        <div class="arch__node"><span>VIS</span><strong>Grafana 10</strong><em>provisioned</em></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><strong>BrewLine</strong> · Project hub</div>
+    <div class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="magic-survival.html">Magic Survival</a>
+      <a href="docs.html">Docs</a>
+    </div>
+  <div data-testid="copyright" style="width:100%; text-align:center; padding-top:16px; margin-top:8px; border-top:1px solid rgba(243,231,211,.06); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); opacity:.85;">© 2026 Saif Ahmed · All rights reserved.</div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      const map = {
+        "hub-produced": () => Brew.state.produced.toLocaleString(),
+        "hub-oee":      () => Brew.efficiency() + "%",
+        "hub-temp":     () => Brew.state.temperature.toFixed(1) + "°C",
+        "hub-state":    () => Brew.state.eStop ? "E-STOP" : (Brew.state.running ? "RUNNING" : "IDLE")
+      };
+      Brew.subscribe(() => {
+        Object.entries(map).forEach(([id, fn]) => {
+          const el = document.querySelector(`[data-testid="${id}"]`);
+          if (el) el.textContent = fn();
+        });
+      });
+      if (!Brew.state.running && !Brew.state.eStop) setTimeout(() => Brew.start(), 600);
+    })();
+  </script>
+</body>
+</html>

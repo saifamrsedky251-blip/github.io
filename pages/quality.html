@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quality Control · BrewLine</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="quality">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="8" fill="#1a120b"/><path d="M10 9h12v3H10zM11 14h10v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z" fill="#b87333"/></svg></span>
+      <span><strong>BrewLine</strong><em>Capsule Factory OS</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html" class="active">BrewLine</a>
+      <a href="magic-survival.html">Magic Survival</a>
+      <a href="about.html">About</a>
+    </nav>
+    <nav class="nav__links" style="margin-left:auto; gap:14px; font-size:12.5px;">
+      <a href="production.html">Production</a>
+      <a href="scada.html">SCADA</a>
+      <a href="quality.html" class="active">Quality</a>
+      <a href="cmms.html">CMMS</a>
+      <a href="analytics.html">Analytics</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> Module M·03 — Quality Control</p>
+        <h1 class="page__title">Defect classifier &amp; pass / reject reporting.</h1>
+        <p class="page__sub">Every capsule that exits the line is inspected. Failures are classified by root cause so process engineers can correct the upstream stage.</p>
+      </div>
+    </header>
+
+    <section class="grid-3" style="margin-bottom: 22px;">
+      <div class="metric metric--good"><label>Pass rate</label><strong id="qc-pass" data-testid="qc-pass">0 %</strong><small>capsules accepted</small></div>
+      <div class="metric metric--bad"><label>Reject rate</label><strong id="qc-reject" data-testid="qc-reject">0 %</strong><small>capsules rejected</small></div>
+      <div class="metric metric--copper"><label>Inspected</label><strong id="qc-total" data-testid="qc-total">0</strong><small>total capsules</small></div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h4><span class="dot bad"></span> Defect breakdown</h4>
+        <div id="defect-list" style="display:grid; gap:12px;"></div>
+      </section>
+
+      <section class="card">
+        <h4><span class="dot"></span> Pass / reject distribution</h4>
+        <div style="display:flex; align-items:center; gap:24px;">
+          <div style="position:relative; width:180px; height:180px;">
+            <svg viewBox="0 0 36 36" style="width:100%; height:100%; transform:rotate(-90deg)">
+              <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(243,231,211,.08)" stroke-width="3.5"></circle>
+              <circle id="donut-pass" cx="18" cy="18" r="15.915" fill="none" stroke="#6ec28c" stroke-width="3.5" stroke-dasharray="0 100" stroke-linecap="round"></circle>
+              <circle id="donut-rej"  cx="18" cy="18" r="15.915" fill="none" stroke="#d96452" stroke-width="3.5" stroke-dasharray="0 100" stroke-linecap="round" stroke-dashoffset="0"></circle>
+            </svg>
+            <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <strong style="font-family:var(--font-display); font-size:1.8rem;" id="donut-center" data-testid="donut-center"><span data-testid="qc-yield">0%</span></strong>
+              <small style="font-family:var(--font-mono); font-size:10px; color:var(--ink-mute); letter-spacing:.2em; text-transform:uppercase">yield</small>
+            </div>
+          </div>
+          <div style="flex:1; display:grid; gap:12px;">
+            <div>
+              <p class="mono" style="font-size:11px; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.2em; margin:0 0 6px">Pass <strong style="color:var(--ink-good)" id="legend-pass">0</strong></p>
+              <div class="bar bar--good"><span id="bar-pass" style="width:0%"></span></div>
+            </div>
+            <div>
+              <p class="mono" style="font-size:11px; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.2em; margin:0 0 6px">Reject <strong style="color:var(--ink-bad)" id="legend-rej">0</strong></p>
+              <div class="bar bar--bad"><span id="bar-rej" style="width:0%"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top: 22px;">
+      <h4><span class="dot"></span> Defect history</h4>
+      <div style="max-height: 420px; overflow:auto;">
+        <table class="table" data-testid="defect-history">
+          <thead><tr><th>Product ID</th><th>Status</th><th>Failure reason</th><th>Time</th></tr></thead>
+          <tbody id="qc-history-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><strong>BrewLine</strong> · M·03 Quality · <em>vision QC simulated</em></div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="docs.html">Docs</a></div>
+  <div data-testid="copyright" style="width:100%; text-align:center; padding-top:16px; margin-top:8px; border-top:1px solid rgba(243,231,211,.06); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); opacity:.85;">© 2026 Saif Ahmed · All rights reserved.</div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/quality.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About · Saif Ahmed</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="about">
+  <header class="nav">
+    <a class="nav__brand" href="../index.html">
+      <span class="nav__logo"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#c8763a"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="#0e0b08"/><path d="M8 22 L16 6 L24 22 Z" fill="url(#lg)"/></svg></span>
+      <span><strong>Saif Ahmed</strong><em>Portfolio · 2026</em></span>
+    </a>
+    <nav class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="brewline.html">BrewLine</a>
+      <a href="magic-survival.html">Magic Survival</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+    <button class="nav__burger" id="nav-burger"><span></span><span></span><span></span></button>
+  </header>
+
+  <main class="page">
+    <header class="page__head">
+      <div>
+        <p class="kicker"><span class="dot pulse"></span> About</p>
+        <h1 class="page__title">Hi — I'm <span class="ink-copper" data-testid="about-name">Saif Ahmed</span>.</h1>
+        <p class="page__sub">A short page about me, the projects on this site, and how to get in touch.</p>
+      </div>
+    </header>
+
+    <!-- INTRODUCTION (course brief) -->
+    <section class="card" style="margin-bottom: 22px;" data-testid="about-intro">
+      <h4><span class="dot"></span> Introduction</h4>
+      <div class="grid-2" style="gap: 28px;">
+        <div>
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Where I come from</p>
+          <p data-testid="intro-origin" style="color:var(--ink-cream-2); margin:0 0 22px;">I grew up in <strong style="color:var(--ink-cream)">Cairo, Egypt</strong> and moved to Berlin to study at SRH Hochschulen Berlin.</p>
+
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Technical background</p>
+          <p data-testid="intro-background" style="color:var(--ink-cream-2); margin:0 0 22px;">Mechatronics student with a growing interest in software — I'm most comfortable in Python, but pick up new languages quickly. I built BrewLine and Magic Survival entirely on my own to learn industrial software and game development end‑to‑end.</p>
+
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Why mechatronics in Berlin</p>
+          <p data-testid="intro-why-berlin" style="color:var(--ink-cream-2); margin:0;">Berlin is one of the best places in Europe to combine engineering with creativity. The pace of the city, the SRH programme's hands‑on focus, and access to industry partners made it the obvious choice.</p>
+        </div>
+
+        <div>
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Programming experience</p>
+          <p data-testid="intro-experience" style="color:var(--ink-cream-2); margin:0 0 22px;">A few years of self‑taught Python, plus formal coursework in OOP, data structures and embedded programming. Comfortable with Git, the Linux command line, and shipping projects on GitHub Pages.</p>
+
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Interests &amp; hobbies</p>
+          <p data-testid="intro-hobbies" style="color:var(--ink-cream-2); margin:0 0 22px;">Game design, mechanical keyboards, electronic music, and watching documentaries about how things are manufactured. I also enjoy good coffee — which is part of why BrewLine became a capsule factory.</p>
+
+          <p style="color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:.25em; text-transform:uppercase; margin:0 0 6px;">Expectations of this course</p>
+          <p data-testid="intro-expectations" style="color:var(--ink-cream-2); margin:0;">To get comfortable taking an industrial concept from spec to a polished, deployable artefact — and to write code I'd still want to read six months later.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h4><span class="dot"></span> Profile</h4>
+        <table class="table">
+          <tbody>
+            <tr><th style="width:160px">Student ID</th><td data-testid="about-id" style="color:var(--ink-cream)">100007118</td></tr>
+            <tr><th>University</th>                    <td data-testid="about-uni" style="color:var(--ink-cream)">SRH Hochschulen Berlin</td></tr>
+            <tr><th>Course</th>                        <td data-testid="about-course" style="color:var(--ink-cream)">Advanced Programming</td></tr>
+            <tr><th>Location</th>                      <td data-testid="about-location" style="color:var(--ink-cream)">Berlin, Germany</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:24px;"><span class="dot"></span> Reach me</h4>
+        <table class="table">
+          <tbody>
+            <tr><th style="width:160px">Email</th>    <td data-testid="about-email" class="mono" style="color:var(--ink-copper-2)"><a href="mailto:Saif.AmrSedkySalemAhmed@stud.srh-university.de" style="color:inherit; border-bottom:1px dashed rgba(200,118,58,.4);">Saif.AmrSedkySalemAhmed@stud.srh-university.de</a></td></tr>
+            <tr><th>GitHub</th>                       <td data-testid="about-github" class="mono" style="color:var(--ink-copper-2)"><a href="https://github.com/saifamrsedky251-blip" target="_blank" rel="noreferrer" style="color:inherit; border-bottom:1px dashed rgba(200,118,58,.4);">github.com/saifamrsedky251-blip</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h4><span class="dot"></span> About this portfolio</h4>
+        <p style="color:var(--ink-cream-2);">
+          This site is my <strong>personal portfolio</strong>. It currently hosts two featured projects:
+        </p>
+        <ul style="color:var(--ink-cream-2); padding-left: 18px;">
+          <li><strong style="color:var(--ink-cream)"><a href="brewline.html" style="border-bottom:1px dashed rgba(200,118,58,.4); color:var(--ink-copper-2)">BrewLine</a></strong> — a simulated smart coffee‑capsule manufacturing line built for an Industrial Informatics module. Five animated stages, SCADA HMI, defect classifier, CMMS and an InfluxDB / Grafana analytics path.</li>
+          <li><strong style="color:var(--ink-cream)"><a href="magic-survival.html" style="border-bottom:1px dashed rgba(124,58,237,.4); color:#c4b5fd">Magic Survival</a></strong> — a solo Pygame bullet‑heaven roguelite I designed and coded from scratch. Three classes, two scaling abilities, and a 15‑minute final boss.</li>
+        </ul>
+
+        <h4 style="margin-top: 22px;"><span class="dot"></span> Things I'm comfortable with</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+          <span class="tag tag--info">Python</span>
+          <span class="tag tag--info">JavaScript</span>
+          <span class="tag tag--info">HTML / CSS</span>
+          <span class="tag tag--good">Pygame</span>
+          <span class="tag tag--warn">SCADA / HMI</span>
+          <span class="tag tag--warn">InfluxDB</span>
+          <span class="tag tag--warn">Grafana</span>
+          <span class="tag tag--good">Git &amp; GitHub Pages</span>
+          <span class="tag tag--info">Linux</span>
+          <span class="tag tag--info">VS Code</span>
+        </div>
+
+        <h4 style="margin-top: 22px;"><span class="dot"></span> Currently exploring</h4>
+        <p style="color:var(--ink-cream-2);" data-testid="about-currently">
+          Real‑time data systems for manufacturing, machine‑vision quality control with TensorFlow.js, and procedural generation in indie games. Always happy to chat about clever HMIs and over‑engineered side projects.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div><strong>Saif Ahmed</strong> · About</div>
+    <div class="footer__links"><a href="../index.html">Home</a><a href="brewline.html">BrewLine</a><a href="magic-survival.html">Magic Survival</a></div>
+  <div data-testid="copyright" style="width:100%; text-align:center; padding-top:16px; margin-top:8px; border-top:1px solid rgba(243,231,211,.06); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute); opacity:.85;">© 2026 Saif Ahmed · All rights reserved.</div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
