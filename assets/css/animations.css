@@ -1,0 +1,40 @@
+/* Animation library — BrewLine */
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(200,118,58,.18); }
+  50%      { box-shadow: 0 0 0 8px rgba(200,118,58,.05); }
+}
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .4; }
+}
+@keyframes belt-move {
+  from { transform: translateX(0); }
+  to   { transform: translateX(28px); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-1px) rotate(-2deg); }
+  75% { transform: translateY(1px) rotate(2deg); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.rise { opacity: 0; animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+.rise-1 { animation-delay: .05s; }
+.rise-2 { animation-delay: .15s; }
+.rise-3 { animation-delay: .25s; }
+.rise-4 { animation-delay: .35s; }
+.rise-5 { animation-delay: .45s; }
+.rise-6 { animation-delay: .55s; }
+
+.fade-in { animation: fade-in .6s ease forwards; }
